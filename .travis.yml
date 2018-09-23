@@ -26,11 +26,8 @@ cache:
 
 matrix:
   include:
-    - stage: "Build Demo Debug"
-      script: ./gradlew clean lintDemoDebug assembleDemoDebugUnitTest assembleDemoDebug
-    - stage: "Build Demo Release"
-      script: ./gradlew clean lintDemoRelease assembleDemoReleaseUnitTest assembleDemoRelase
-    - stage: "Build Full Debug"
-      script: ./gradlew clean lintFullDebug assembleFullDebugUnitTest assembleFullDebug
-    - stage: "Build Full Release"
-      script: ./gradlew clean lintFullRelease assembleFullReleaseUnitTest assembleFullRelease
+    - stage: "Build"
+      name: "Demo"
+      script: ./gradlew clean lintDemoDebug lintDemoRelease assembleDemo
+    - script: ./gradlew clean lintFullDebug lintFullRelease assembleFull
+      name: "Full"
