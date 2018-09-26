@@ -24,10 +24,7 @@ cache:
     - $HOME/.gradle/wrapper/
     - $HOME/.android/build-cache
 
-matrix:
+jobs:
   include:
-    - stage: "Build"
-      name: "Demo"
-      script: ./gradlew clean lintDemoDebug lintDemoRelease assembleDemo
-    - script: ./gradlew clean lintFullDebug lintFullRelease assembleFull
-      name: "Full"
+    - script: ./gradlew assembleRelease
+      if: branch =~ ^conditions\/.+$ AND type IN (push, pull request)
