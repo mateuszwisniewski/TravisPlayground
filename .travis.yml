@@ -24,10 +24,14 @@ cache:
     - $HOME/.gradle/wrapper/
     - $HOME/.android/build-cache
 
-matrix:
-  include:
-    - stage: "Build"
-      name: "Demo"
-      script: ./gradlew clean lintDemoDebug lintDemoRelease assembleDemo
-    - script: ./gradlew clean lintFullDebug lintFullRelease assembleFull
-      name: "Full"
+script: ./gradlew clean build
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_OAUTH_TOKEN
+  file:
+    - app/build/outputs/apk/demo/release/app-demo-release-unsigned.apk
+    - app/build/outputs/apk/full/release/app-full-release-unsigned.apk
+  skip_cleanup: true
+  on:
+    tags: true
