@@ -27,4 +27,4 @@ cache:
 jobs:
   include:
     - script: ./gradlew clean build
-      if: branch =~ ^conditions/.+$ AND type IN (push, pull request)
+      if: branch =~ ^conditions/.+$
