@@ -26,5 +26,5 @@ cache:
 
 jobs:
   include:
-    - script: ./gradlew assembleRelease
-      if: branch =~ ^conditions\/.+$ AND type IN (push, pull request)
+    - script: ./gradlew clean build
+      if: branch =~ ^conditions/.+$ AND type IN (push, pull request)
