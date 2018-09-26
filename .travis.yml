@@ -24,10 +24,6 @@ cache:
     - $HOME/.gradle/wrapper/
     - $HOME/.android/build-cache
 
-matrix:
-  include:
-    - stage: "Build"
-      name: "Demo"
-      script: ./gradlew clean lintDemoDebug lintDemoRelease assembleDemo
-    - script: ./gradlew clean lintFullDebug lintFullRelease assembleFull
-      name: "Full"
+if: branch = conditions/build && tag IS blank
+
+script: ./gradlew clean build
